@@ -111,25 +111,42 @@ Dengan demikian, setiap tahapan ini berkontribusi pada pemahaman yang lebih baik
 
 ## Data Preparation
 
-Tahapan **Data Processing** dan **Data Preparation** merupakan langkah penting dalam mengolah dataset agar siap untuk analisis dan pemodelan. Proses ini meliputi serangkaian teknik yang bertujuan untuk membersihkan, memformat, dan mempersiapkan data dengan lebih baik untuk model yang akan digunakan.
+Tahapan **Data Processing** atau **Data Preparation** merupakan langkah penting dalam mengolah dataset agar siap untuk analisis dan pemodelan. Proses ini meliputi serangkaian teknik yang bertujuan untuk membersihkan, memformat, dan mempersiapkan data dengan lebih baik untuk model yang akan digunakan.
 
 1. **Data Duplicated**
 Selanjutnya, kita memeriksa adanya **data duplikat** menggunakan fungsi `check_duplicates(df)`. Mengidentifikasi dan menghapus data duplikat penting untuk memastikan analisis tidak terdistorsi oleh entri yang berulang, yang dapat menyebabkan bias dalam hasil model.
 
+    ![Duplicated Data](https://raw.githubusercontent.com/Rendika7/Predictive-Analysis-for-Loan-Approval/refs/heads/main/source/Duplicated%20Data.png)
+
 2. **Missing Values**
 Tahapan berikutnya adalah memeriksa **nilai yang hilang** dalam dataset dengan menggunakan fungsi `missing_data(df)`. Nilai yang hilang dapat mengganggu analisis, sehingga penting untuk mengidentifikasi kolom yang memiliki nilai hilang dan mengambil langkah yang diperlukan untuk mengatasinya, seperti menghapus atau mengisi nilai tersebut.
 
+    ![Missing Values](https://raw.githubusercontent.com/Rendika7/Predictive-Analysis-for-Loan-Approval/refs/heads/main/source/Missing%20Value.png)
+
 3. **Handling Outliers**
 Setelah mengidentifikasi nilai yang hilang, kita melakukan **penanganan outlier** dengan memisahkan kolom menjadi numerik dan kategorikal. Menggunakan metode **Interquartile Range (IQR)**, kita mendeteksi dan menghapus outlier dari kolom numerik. Visualisasi melalui boxplot membantu dalam memahami penyebaran dan dampak outlier. Dengan menghilangkan outlier, kita memastikan bahwa data yang digunakan untuk pemodelan lebih representatif dan akurat.
+
+    ![Outlier Data](https://raw.githubusercontent.com/Rendika7/Predictive-Analysis-for-Loan-Approval/refs/heads/main/source/Outlier.png)
 
 4. **Encoding Fitur Kategori**
 Setelah data dibersihkan, langkah selanjutnya adalah melakukan **One-Hot Encoding** untuk fitur kategorikal menggunakan `pd.get_dummies()`, mengubah kategori menjadi variabel biner untuk memudahkan pemodelan.
 
 5. **Feature Scaling**
-Kemudian, kita menerapkan **Min-Max Scaling** untuk menormalkan fitur ke rentang [0, 1]. Teknik ini mencegah dominasi fitur dengan skala yang lebih besar dan meningkatkan performa model yang berbasis jarak serta Neural Networks.
+Kemudian, kita menerapkan **Min-Max Scaling** untuk menormalkan fitur ke rentang [0, 1]. Teknik ini mencegah dominasi fitur dengan skala yang lebih besar dan meningkatkan performa model yang berbasis jarak serta seperti **KNN**, **SVM**, dan **Neural Networks**. 
+
+**Rumus Min-Max Scaling:**
+
+$$
+X_{\text{scaled}} = \frac{X - X_{\text{min}}}{X_{\text{max}} - X_{\text{min}}}
+$$
+
+- $` X `$ adalah nilai asli.
+- $` X_{\text{min}} `$ dan $` X_{\text{max}} `$ adalah nilai minimum dan maksimum fitur.
 
 6. **Splitting Data**
 Tahap terakhir dalam persiapan data adalah membagi dataset menjadi fitur (`X`) dan target (`y`), serta membagi dataset menjadi data latih dan data uji (80:20) dengan menjaga distribusi kelas yang seimbang. Penghapusan kolom yang tidak relevan, seperti `ApplicationDate`, dilakukan untuk memastikan hanya fitur yang signifikan yang digunakan dalam analisis.
+
+    ![Splitting Dataset](https://raw.githubusercontent.com/Rendika7/Predictive-Analysis-for-Loan-Approval/refs/heads/main/source/Splitting%20Dataset.png)
 
 Dengan tahapan data processing dan preparation yang sistematis ini, kita dapat meningkatkan kualitas data yang digunakan, meningkatkan akurasi model, dan memastikan bahwa hasil analisis lebih dapat diandalkan.
 
