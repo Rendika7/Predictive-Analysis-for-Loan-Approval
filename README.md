@@ -151,8 +151,60 @@ Tahap terakhir dalam persiapan data adalah membagi dataset menjadi fitur (`X`) d
 Dengan tahapan data processing dan preparation yang sistematis ini, kita dapat meningkatkan kualitas data yang digunakan, meningkatkan akurasi model, dan memastikan bahwa hasil analisis lebih dapat diandalkan.
 
 ## Modeling
-Tahapan ini membahas mengenai model machine learning yang digunakan untuk menyelesaikan permasalahan. Anda perlu menjelaskan tahapan dan parameter yang digunakan pada proses pemodelan.
+Tahapan ini membahas mengenai model machine learning yang digunakan untuk menyelesaikan permasalahan klasifikasi. Penelitian ini menggunakan enam model yang berbeda untuk melihat model mana yang memberikan hasil terbaik. Berikut adalah penjelasan mengenai tahapan yang dilakukan dan parameter yang digunakan pada proses pemodelan, serta kelebihan dan kekurangan dari masing-masing algoritma.
 
+### Tahapan Proses Pemodelan
+1. **Inisialisasi Model**: Beberapa model digunakan untuk pelatihan, yaitu AdaBoostClassifier, RidgeClassifier, Linear Discriminant Analysis (LDA), Support Vector Machine (SVM) dengan kernel linear, Logistic Regression, dan Quadratic Discriminant Analysis (QDA). Setiap model diinisialisasi tanpa pengaturan parameter yang kompleks pada tahap awal.
+  
+2. **Pelatihan Model**: Model dilatih menggunakan data pelatihan (`X_train` dan `y_train`). Waktu yang diperlukan untuk pelatihan dicatat untuk setiap model.
+  
+3. **Evaluasi Model**: Setiap model dievaluasi menggunakan data uji (`X_test` dan `y_test`). Metrik evaluasi yang digunakan meliputi akurasi, presisi, recall, dan F1 Score. Selain itu, confusion matrix digunakan untuk mengevaluasi kesalahan prediksi.
+
+4. **Visualisasi Hasil Evaluasi**: Hasil evaluasi model divisualisasikan menggunakan bar chart untuk perbandingan metrik, serta confusion matrix untuk masing-masing model.
+
+### Model dan Parameternya
+Berikut adalah model yang digunakan, parameter yang disetel secara default, serta kelebihan dan kekurangan dari masing-masing algoritma:
+
+1. **AdaBoostClassifier**
+   - *Parameter Utama*:
+     - `n_estimators`: **50** (Jumlah estimasi dasar yang digunakan)
+     - `learning_rate`: **1.0** (Mempertimbangkan kontribusi setiap estimator)
+   - *Kelebihan*: Dapat meningkatkan performa model lemah menjadi lebih kuat, robust terhadap overfitting jika parameter disetel dengan baik.
+   - *Kekurangan*: Proses pelatihan relatif lambat dibandingkan model yang lebih sederhana, tidak cocok untuk dataset dengan banyak noise.
+
+2. **RidgeClassifier**
+   - *Parameter Utama*:
+     - `alpha`: **1.0** (Parameter regulasi yang mengontrol kompleksitas model)
+   - *Kelebihan*: Sederhana dan cepat dalam hal komputasi, cocok untuk data dengan multikolinearitas.
+   - *Kekurangan*: Tidak efektif untuk menangani data yang tidak dapat dipisahkan secara linear.
+
+3. **Linear Discriminant Analysis (LDA)**
+   - *Parameter Utama*:
+     - `solver`: **'svd'** (Algoritma yang digunakan untuk memecahkan masalah LDA)
+     - `priors`: **None** (Menyatakan distribusi a priori dari kelas)
+   - *Kelebihan*: Cocok untuk data dengan distribusi normal dan separasi linear, dapat mengurangi dimensi fitur.
+   - *Kekurangan*: Sangat sensitif terhadap outlier, kurang efektif untuk data dengan distribusi non-normal.
+
+4. **Support Vector Machine (SVM) dengan Kernel Linear**
+   - *Parameter Utama*:
+     - `C`: **1.0** (Parameter regulasi yang mengontrol trade-off antara margin yang lebih lebar dan klasifikasi yang lebih akurat)
+   - *Kelebihan*: Efektif pada ruang dimensi tinggi, dapat menangani kasus data tidak seimbang.
+   - *Kekurangan*: Waktu komputasi cukup lama untuk dataset besar, membutuhkan tuning parameter yang akurat.
+
+5. **Logistic Regression**
+   - *Parameter Utama*:
+     - `C`: **1.0** (Parameter regulasi yang mengontrol kompleksitas model)
+     - `solver`: **'lbfgs'** (Algoritma optimasi yang digunakan)
+   - *Kelebihan*: Sederhana, mudah diinterpretasikan, cocok untuk klasifikasi biner.
+   - *Kekurangan*: Tidak dapat menangani data yang tidak terpisahkan secara linear, performa menurun jika fitur sangat kompleks.
+
+6. **Quadratic Discriminant Analysis (QDA)**
+   - *Parameter Utama*:
+     - `reg_param`: **0.0** (Regularization parameter; tidak diterapkan secara default)
+   - *Kelebihan*: Baik untuk data dengan distribusi berbeda dan dapat dipisahkan secara kuadratik.
+   - *Kekurangan*: Sensitif terhadap outlier, memerlukan jumlah sampel yang cukup banyak untuk mengestimasi parameter distribusi.
+
+### Model Terbaik
 **Rubrik/Kriteria Tambahan (Opsional)**: 
 - Menjelaskan kelebihan dan kekurangan dari setiap algoritma yang digunakan.
 - Jika menggunakan satu algoritma pada solution statement, lakukan proses improvement terhadap model dengan hyperparameter tuning. **Jelaskan proses improvement yang dilakukan**.
