@@ -205,10 +205,16 @@ Berikut adalah model yang digunakan, parameter yang disetel secara default, sert
    - *Kekurangan*: Sensitif terhadap outlier, memerlukan jumlah sampel yang cukup banyak untuk mengestimasi parameter distribusi.
 
 ### Model Terbaik
-**Rubrik/Kriteria Tambahan (Opsional)**: 
-- Menjelaskan kelebihan dan kekurangan dari setiap algoritma yang digunakan.
-- Jika menggunakan satu algoritma pada solution statement, lakukan proses improvement terhadap model dengan hyperparameter tuning. **Jelaskan proses improvement yang dilakukan**.
-- Jika menggunakan dua atau lebih algoritma pada solution statement, maka pilih model terbaik sebagai solusi. **Jelaskan mengapa memilih model tersebut sebagai model terbaik**.
+
+Berdasarkan evaluasi metrik yang diukur, **RidgeClassifier** dipilih sebagai model terbaik untuk prediksi persetujuan pinjaman. Berikut alasan pemilihan RidgeClassifier dibandingkan model lainnya:
+
+- **Performansi Metrik Sempurna:** RidgeClassifier memberikan akurasi, precision, recall, dan F1 score sempurna (semua 1.0), menunjukkan tidak ada kesalahan klasifikasi. Hal ini memastikan semua prediksi dibuat dengan tepat, baik untuk persetujuan maupun penolakan pinjaman.
+
+- **Waktu Pelatihan Tercepat:** RidgeClassifier memiliki waktu pelatihan tercepat (0.061 detik) dibandingkan dengan model lain yang juga mencapai akurasi sempurna, seperti AdaBoostClassifier dan Linear Discriminant Analysis (LDA). Waktu pelatihan yang cepat sangat penting untuk efisiensi dan memungkinkan model diperbarui lebih sering tanpa menghabiskan banyak sumber daya.
+
+- **Stabilitas Model:** RidgeClassifier menggunakan regulasi Ridge, yang membantu menghindari overfitting pada data. Hal ini menjadikannya lebih stabil dan andal saat menghadapi dataset yang mungkin mengandung multikolinearitas atau fitur saling terkait.
+
+Dengan performansi metrik sempurna, waktu pelatihan yang paling efisien, dan kemampuan untuk generalisasi yang baik, **RidgeClassifier** adalah pilihan yang paling sesuai untuk digunakan dalam implementasi prediksi persetujuan pinjaman.
 
 ## Evaluation
 Pada bagian ini anda perlu menyebutkan metrik evaluasi yang digunakan. Lalu anda perlu menjelaskan hasil proyek berdasarkan metrik evaluasi yang digunakan.
