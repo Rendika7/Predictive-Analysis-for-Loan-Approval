@@ -217,19 +217,82 @@ Berdasarkan evaluasi metrik yang diukur, **RidgeClassifier** dipilih sebagai mod
 Dengan performansi metrik sempurna, waktu pelatihan yang paling efisien, dan kemampuan untuk generalisasi yang baik, **RidgeClassifier** adalah pilihan yang paling sesuai untuk digunakan dalam implementasi prediksi persetujuan pinjaman.
 
 ## Evaluation
-Pada bagian ini anda perlu menyebutkan metrik evaluasi yang digunakan. Lalu anda perlu menjelaskan hasil proyek berdasarkan metrik evaluasi yang digunakan.
 
-Sebagai contoh, Anda memiih kasus klasifikasi dan menggunakan metrik **akurasi, precision, recall, dan F1 score**. Jelaskan mengenai beberapa hal berikut:
-- Penjelasan mengenai metrik yang digunakan
-- Menjelaskan hasil proyek berdasarkan metrik evaluasi
+Pada bagian ini, evaluasi model dilakukan menggunakan beberapa metrik untuk memastikan model prediksi persetujuan pinjaman bekerja secara optimal. Metrik evaluasi yang digunakan adalah **accuracy**, **precision**, **recall**, **F1 score**, dan **waktu pelatihan**.
 
-Ingatlah, metrik evaluasi yang digunakan harus sesuai dengan konteks data, problem statement, dan solusi yang diinginkan.
+### Penjelasan Metrik yang Digunakan:
 
-**Rubrik/Kriteria Tambahan (Opsional)**: 
-- Menjelaskan formula metrik dan bagaimana metrik tersebut bekerja.
+1. **Accuracy**: Mengukur proporsi prediksi yang benar dibandingkan dengan total prediksi yang dibuat. Metrik ini menunjukkan seberapa sering model benar dalam memprediksi persetujuan atau penolakan pinjaman.
+   - Formula:
+     
+     $`\text{Accuracy} = \frac{TP + TN}{TP + TN + FP + FN}`$
+     
+   - **True Positives (TP)** dan **True Negatives (TN)** adalah prediksi yang benar, sedangkan **False Positives (FP)** dan **False Negatives (FN)** adalah prediksi yang salah.
 
-**---Ini adalah bagian akhir laporan---**
+2. **Precision**: Mengukur proporsi prediksi positif yang benar. Precision penting untuk menghindari kesalahan ketika model menyetujui pinjaman, sehingga meminimalkan risiko memberikan pinjaman kepada pemohon dengan risiko gagal bayar.
+   - Formula:
+     
+     $`\text{Precision} = \frac{TP}{TP + FP}`$
+     
+   - Precision tinggi berarti mayoritas pemohon yang disetujui memang layak untuk diberikan pinjaman.
 
-_Catatan:_
-- _Anda dapat menambahkan gambar, kode, atau tabel ke dalam laporan jika diperlukan. Temukan caranya pada contoh dokumen markdown di situs editor [Dillinger](https://dillinger.io/), [Github Guides: Mastering markdown](https://guides.github.com/features/mastering-markdown/), atau sumber lain di internet. Semangat!_
-- Jika terdapat penjelasan yang harus menyertakan code snippet, tuliskan dengan sewajarnya. Tidak perlu menuliskan keseluruhan kode project, cukup bagian yang ingin dijelaskan saja.
+3. **Recall**: Mengukur kemampuan model dalam mendeteksi semua kasus positif yang sebenarnya. Dalam konteks ini, recall memastikan model tidak melewatkan pemohon yang layak mendapatkan persetujuan.
+   - Formula:
+     
+     $`\text{Recall} = \frac{TP}{TP + FN}`$
+     
+   - Recall tinggi mengindikasikan model berhasil mengidentifikasi semua pemohon layak dengan benar.
+
+4. **F1 Score**: Merupakan rata-rata harmonis dari precision dan recall. Metrik ini berguna ketika ada trade-off antara precision dan recall, dan memastikan keseimbangan antara mengurangi kesalahan tipe I (false positives) dan tipe II (false negatives).
+   - Formula:
+     
+     $`\text{F1 Score} = 2 \times \frac{\text{Precision} \times \text{Recall}}{\text{Precision} + \text{Recall}}`$
+     
+   - F1 score digunakan karena penting untuk menjaga keseimbangan antara risiko menyetujui pemohon yang tidak layak dan menolak pemohon yang layak.
+
+5. **Training Time**: Mengukur waktu yang dibutuhkan model untuk menyelesaikan proses pelatihan. Ini penting untuk mempertimbangkan efisiensi komputasi, terutama untuk model yang harus sering diperbarui dengan data baru.
+
+Penggunaan format seperti ini akan lebih mudah dibaca dan ditampilkan dengan baik pada platform yang mendukung format LaTeX untuk rumus matematika.
+
+### Hasil Evaluasi:
+
+Berdasarkan metrik evaluasi yang digunakan, berikut adalah hasil dari masing-masing model:
+
+1. **AdaBoostClassifier**:
+   - **Accuracy, Precision, Recall, F1 Score**: 1.0 (semua metrik sempurna).
+   - **Confusion Matrix**: Tidak ada kesalahan klasifikasi, yang berarti model memprediksi semua kasus dengan benar.
+   - **Training Time**: 1.445 detik. Waktu pelatihan ini cukup lama dibandingkan dengan model lain, yang bisa menjadi kelemahan untuk pembaruan model yang sering.
+
+2. **RidgeClassifier**:
+   - **Accuracy, Precision, Recall, F1 Score**: 1.0 (semua metrik sempurna).
+   - **Confusion Matrix**: Tidak ada kesalahan klasifikasi.
+   - **Training Time**: 0.010 detik, menjadikannya model dengan waktu pelatihan tercepat dan sangat efisien.
+
+3. **Linear Discriminant Analysis (LDA)**:
+   - **Accuracy, Precision, Recall, F1 Score**: 1.0 (semua metrik sempurna).
+   - **Confusion Matrix**: Tidak ada kesalahan klasifikasi.
+   - **Training Time**: 0.049 detik. Waktu pelatihan lebih cepat dibandingkan AdaBoostClassifier tetapi lebih lambat dari RidgeClassifier.
+
+4. **SVM - Linear Kernel**:
+   - **Accuracy, Precision, Recall, F1 Score**: 1.0 (semua metrik sempurna).
+   - **Confusion Matrix**: Tidak ada kesalahan klasifikasi.
+   - **Training Time**: 0.168 detik. Waktu pelatihan lebih lama dibandingkan RidgeClassifier dan LDA.
+
+5. **Logistic Regression**:
+   - **Accuracy**: 0.999, **Precision**: 1.0, **Recall**: 0.998, **F1 Score**: 0.999.
+   - **Confusion Matrix**: 1 kesalahan klasifikasi pada kelas positif.
+   - **Training Time**: 0.056 detik. Meskipun cukup cepat, akurasinya sedikit lebih rendah dibandingkan model lain dengan metrik sempurna.
+
+6. **Quadratic Discriminant Analysis (QDA)**:
+   - **Accuracy**: 0.999, **Precision**: 0.995, **Recall**: 1.0, **F1 Score**: 0.998.
+   - **Confusion Matrix**: 2 kesalahan klasifikasi pada kelas negatif.
+   - **Training Time**: 0.027 detik. Cukup cepat, tetapi akurasi lebih rendah dibandingkan RidgeClassifier dan LDA.
+
+### Kesimpulan Evaluasi Model:
+
+Berdasarkan evaluasi menggunakan accuracy, precision, recall, F1 score, dan waktu pelatihan, **RidgeClassifier** adalah model terbaik untuk prediksi persetujuan pinjaman. Alasan pemilihan ini adalah sebagai berikut:
+
+- **Metrik Evaluasi Sempurna**: RidgeClassifier memberikan nilai sempurna pada semua metrik evaluasi, menunjukkan bahwa tidak ada kesalahan dalam klasifikasi pemohon yang layak atau tidak layak mendapatkan pinjaman.
+- **Waktu Pelatihan yang Cepat**: RidgeClassifier memiliki waktu pelatihan tercepat (0.010 detik), menjadikannya sangat efisien untuk implementasi dalam skenario produksi, terutama jika model perlu diperbarui dengan data baru secara berkala.
+
+Dengan performansi sempurna dan efisiensi waktu pelatihan, RidgeClassifier adalah pilihan yang paling tepat untuk digunakan dalam implementasi prediksi persetujuan pinjaman.
