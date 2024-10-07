@@ -256,6 +256,12 @@ Penggunaan format seperti ini akan lebih mudah dibaca dan ditampilkan dengan bai
 
 ### Hasil Evaluasi:
 
+![Model Evaluation Metric Comparison](https://raw.githubusercontent.com/Rendika7/Predictive-Analysis-for-Loan-Approval/refs/heads/main/source/Model%20Evaluation%20Metrics%20Comparison.png)
+
+![Confusion Matrix](https://raw.githubusercontent.com/Rendika7/Predictive-Analysis-for-Loan-Approval/refs/heads/main/source/Confusion%20Matrix.png)
+
+![Time Comparison](https://raw.githubusercontent.com/Rendika7/Predictive-Analysis-for-Loan-Approval/refs/heads/main/source/Model%20Training%20Time%20Comparison.png)
+
 Berdasarkan metrik evaluasi yang digunakan, berikut adalah hasil dari masing-masing model:
 
 1. **AdaBoostClassifier**:
